@@ -1,11 +1,11 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('state', {
+  return sequelize.define('State', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 'nextval(state_id_seq::regclass)',
+      autoIncrement: true,
       primaryKey: true
     },
     acronym: {

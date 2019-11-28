@@ -1,11 +1,11 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('product_type', {
+  return sequelize.define('StoreType', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 'nextval(product_type_id_seq::regclass)',
+      autoIncrement: true,
       primaryKey: true
     },
     description: {
@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'product_type',
+    tableName: 'store_type',
     timestamps: false
   });
 };

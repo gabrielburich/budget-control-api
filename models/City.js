@@ -1,11 +1,11 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('city', {
+  return sequelize.define('City', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 'nextval(city_id_seq::regclass)',
+      autoIncrement: true,
       primaryKey: true
     },
     stateId: {

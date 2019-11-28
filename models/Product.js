@@ -1,43 +1,35 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('store', {
+  return sequelize.define('Product', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 'nextval(store_id_seq::regclass)',
+      autoIncrement: true,
       primaryKey: true
+    },
+    storeId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      field: 'store_id'
+    },
+    price: {
+      type: DataTypes.REAL,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    userId: {
+    productType: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      field: 'user_id'
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    rating : {
-      type: DataTypes.REAL,
-      allowNull: false
-    },
-    storeType: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      field: 'store_type'
+      field: 'product_type'
     }
   }, {
-    tableName: 'store',
+    tableName: 'product',
     timestamps: false
   });
 };
