@@ -1,13 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user', {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 'nextval(user_id_seq::regclass)',
-      primaryKey: true
-    },
+  return sequelize.define('User', {
     name: {
       type: DataTypes.STRING,
       allowNull: false
