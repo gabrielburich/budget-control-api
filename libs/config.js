@@ -5,6 +5,7 @@ module.exports = {
   params: {
     host: '127.0.0.1',
     dialect: 'postgres',
-    timestamps: false
+    timestamps: false,
+    logging: false
   }
 };
