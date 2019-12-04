@@ -1,5 +1,6 @@
 import bodyParser from "body-parser";
 import cors from "cors";
+import {parseFilter} from "./parseFilter";
 
 module.exports = server => {
   server.set('port', 3001);
@@ -8,6 +9,7 @@ module.exports = server => {
   server.use(bodyParser.json());
   server.use((req, res, next) => {
     req.body && delete req.body.id;
+    req.query && parseFilter(req.query);
     next();
   })
 };

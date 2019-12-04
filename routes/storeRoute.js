@@ -3,7 +3,7 @@ module.exports = server => {
 
     server.route('/store/')
         .get((req, res) => {
-            Store.findAll({})
+            Store.findAll({where: req.query.filter})
                 .then(list => res.json(list))
                 .catch(error => res.status(412).json({msg: error.message}));
         })

@@ -4,13 +4,14 @@
   "description": "API project My Own Store",
   "main": "server.js",
   "scripts": {
-    "start": "node start.js"
+    "start": "nodemon start.js"
   },
   "author": "Gabriel Burich",
   "dependencies": {
     "consign": "^0.1.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "lodash": "^4.17.15",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.2",
@@ -21,6 +22,7 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0"
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.1"
   }
 }
