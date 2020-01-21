@@ -7,7 +7,7 @@ module.exports = server => {
     const configuration = server.libs.config;
     const strategyOpt = {secretOrKey: configuration.jwtSecret, jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()};
     const strategy = new Strategy(strategyOpt, (payload, done) => {
-        User.findById(payload.id)
+        User.findOne({where: {id: payload.id}})
             .then(user => {
                 return (user)
                     ? done(null, {id: user.id, email: user.email})
