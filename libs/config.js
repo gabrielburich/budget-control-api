@@ -7,5 +7,7 @@ module.exports = {
     dialect: 'postgres',
     timestamps: false,
     logging: false
-  }
+  },
+  jwtSecret: 't3st@2@2',
+  jwtSession: {session: false}
 };

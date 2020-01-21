@@ -1,4 +1,4 @@
-/* jshint indent: 2 */
+import bcrypt from "bcrypt";
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('User', {
@@ -26,6 +26,15 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'user',
-    timestamps: false
+    timestamps: false,
+    hooks: {
+      beforeCreate: user => {
+        const salt = bcrypt.genSaltSync();
+        user.password = bcrypt.hashSync(user.password, salt)
+      }
+    },
+    classMethods: {
+      isPassword: (encodedPassword, password) => bcrypt.compareSync(password, encodedPassword)
+    }
   });
 };
