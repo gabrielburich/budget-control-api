@@ -2,6 +2,7 @@ module.exports = server => {
     const Card = server.db.models.Card;
 
     server.route('/card/')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Card.findAll({})
                 .then(users => res.json(users))
@@ -14,6 +15,7 @@ module.exports = server => {
         });
 
     server.route('/card/:id')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Card.findOne({where: req.params})
                 .then(result => {

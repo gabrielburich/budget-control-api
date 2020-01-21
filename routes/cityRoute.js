@@ -2,6 +2,7 @@ module.exports = server => {
     const City = server.db.models.City;
 
     server.route('/city/')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             City.findAll({})
                 .then(list => res.json(list))
@@ -9,6 +10,7 @@ module.exports = server => {
         });
 
     server.route('/city/:id')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             City.findOne({where: req.params})
             .then(result => {

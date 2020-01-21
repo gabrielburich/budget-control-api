@@ -13,5 +13,4 @@ module.exports = server => {
     req.query && parseFilter(req.query);
     next();
   });
-  server.use(server.auth.authenticate())
 };

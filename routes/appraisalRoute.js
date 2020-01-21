@@ -2,6 +2,7 @@ module.exports = server => {
     const Appraisal = server.db.models.Appraisal;
 
     server.route('/appraisal/')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Appraisal.findAll({})
                 .then(users => res.json(users))
@@ -14,6 +15,7 @@ module.exports = server => {
         });
 
     server.route('/appraisal/:id')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Appraisal.findOne({where: req.params})
                 .then(result => {

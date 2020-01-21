@@ -2,6 +2,7 @@ module.exports = server => {
     const Order = server.db.models.Order;
 
     server.route('/order/')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Order.findAll({})
                 .then(users => res.json(users))
@@ -14,6 +15,7 @@ module.exports = server => {
         });
 
     server.route('/order/:id')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Order.findOne({where: req.params})
                 .then(result => {

@@ -2,6 +2,7 @@ module.exports = server => {
     const Complaint = server.db.models.Complaint;
 
     server.route('/complaint/')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Complaint.findAll({})
                 .then(users => res.json(users))
@@ -14,6 +15,7 @@ module.exports = server => {
         });
 
     server.route('/complaint/:id')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Complaint.findOne({where: req.params})
                 .then(result => {

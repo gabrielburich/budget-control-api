@@ -2,6 +2,7 @@ module.exports = server => {
     const Address = server.db.models.Adress;
 
     server.route('/address/')
+        .all(server.auth.authenticate())
         .post((req, res) => {
             Address.create(req.body)
                 .then(result => res.json(result.id))
@@ -9,6 +10,7 @@ module.exports = server => {
         });
 
     server.route('/address/:id')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Address.findOne({where: req.params})
                 .then(result => {

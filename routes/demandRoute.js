@@ -1,14 +1,16 @@
 module.exports = server => {
     const Demand = server.db.models.Demand;
 
-    server.route('/address/')
+    server.route('/demand/')
+        .all(server.auth.authenticate())
         .post((req, res) => {
             Demand.create(req.body)
                 .then(result => res.json(result.id))
                 .catch(error => res.status(412).json({msg: error.message}));
         });
 
-    server.route('/address/:id')
+    server.route('/demand/:id')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             Demand.findOne({where: req.params})
                 .then(result => {

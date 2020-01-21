@@ -2,6 +2,7 @@ module.exports = server => {
     const StoreType = server.db.models.StoreType;
 
     server.route('/store-type/')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             StoreType.findAll({})
             .then(list => res.json(list))
@@ -9,6 +10,7 @@ module.exports = server => {
         });
 
     server.route('/store-type/:id')
+        .all(server.auth.authenticate())
         .get((req, res) => {
             StoreType.findOne({where: req.params})
             .then(result => {
