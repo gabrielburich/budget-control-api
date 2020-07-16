@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('User', {
+  const userModel = sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -32,9 +32,10 @@ module.exports = function(sequelize, DataTypes) {
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(user.password, salt)
       }
-    },
-    classMethods: {
-      isPassword: (encodedPassword, password) => bcrypt.compareSync(password, encodedPassword)
     }
   });
+
+  userModel.isPassword = (encodedPassword, password) => bcrypt.compareSync(password, encodedPassword);
+
+  return userModel;
 };

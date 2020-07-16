@@ -10,7 +10,7 @@ module.exports = server => {
   server.use(server.auth.initialize());
   server.use((req, res, next) => {
     req.body && delete req.body.id;
-    req.query && parseFilter(req.query);
+    Object.entries(req.query).length > 0 && parseFilter(req.query);
     next();
   });
 };

@@ -11,7 +11,7 @@ module.exports = server => {
             User.findOne({where: {email: email}})
                 .then(user => {
                     if (User.isPassword(user.password, password)) {
-                        const payload = {id: user.id};
+                        const payload = {id: user.id, name: user.name};
                         res.json({token: jwt.encode(payload, configuration.jwtSecret)});
                     } else {
                         res.sendStatus(401);
